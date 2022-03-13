@@ -290,9 +290,11 @@ VALUES ('Kyle', 'Harwood', 2022, 3.0)
 def problem_six(request):
     
     # Make sure to set this equal to the primary key of the row you just created!
-    student_id = 11
+    student_id = 12
 
-    
+    new_student = Student.objects.filter(pk=student_id).update(gpa=3.7)
+    new_student = Student.objects.get(pk=student_id)
+    print(f'Id: {new_student.pk}\nFull Name: {new_student.first_name} {new_student.last_name}\nGPA: {new_student.gpa}')
 
     return complete(request)
 
@@ -340,7 +342,7 @@ def problem_seven(request):
 
     # Make sure to set this equal to the primary key of the row you just created!
     student_id = 11
-
+    delete_student = Student.objects.filter(pk=student_id).delete()
 
     try:
         student = Student.objects.get(pk=student_id)
